@@ -4,10 +4,6 @@ function calculateFinalHeight(velocities: number[]): number {
   let height = 0;
   for (const velocity of velocities) {
     height += velocity;
-    // Ensure height never goes negative during flight
-    if (height < 0) {
-      height = 0;
-    }
   }
   return height;
 }
