@@ -1,4 +1,29 @@
-import { getInputFiles } from './helpers.js';
+import { parseNumbers, solveLevel } from './helpers.js';
 
-const inputFiles = getInputFiles(1);
-console.log(inputFiles);
+function calculateFinalHeight(velocities: number[]): number {
+  let height = 0;
+  for (const velocity of velocities) {
+    height += velocity;
+    // Ensure height never goes negative during flight
+    if (height < 0) {
+      height = 0;
+    }
+  }
+  return height;
+}
+
+solveLevel(1, (lines: string[]) => {
+    const numFlights = parseInt(lines[0]!);
+    const results: string[] = [];
+    
+    for (let i = 1; i <= numFlights; i++) {
+        const velocities = parseNumbers(lines[i]!);
+        const finalHeight = calculateFinalHeight(velocities);
+        results.push(finalHeight.toString());
+    }
+
+    return results;
+  
+});
+
+console.log('Level 1 completed!');
